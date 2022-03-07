@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <meta name="google-signin-client_id" content="545127291117-o7tkdecs5mlkdeb5a97v01elrmsiqrsp.apps.googleusercontent.com">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+      
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body>
+    
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    
+
+    <script>
+    
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        // var id_token = googleUser.getAuthResponse().id_token;//Send the ID token to your server
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        var delayInMilliseconds = 1000; //1 second
+    
+    setTimeout(function() {
+        window.open("index2.html");
+      //your code to be executed after 1 second
+    }, delayInMilliseconds);
+       
+        // document.getElementById("name").innerHTML = profile.getName();
+        // loginID = profile.getId();
+        // document.getElementById("ID").innerHTML = loginID;
+        // console.log(loginID);
+        function adduser(user){
+          let body={
+             user
+          }
+          console.log(body);
+          let option={
+              method: "post",
+              headers:{
+                  'Content-Type': 'application/json;charset=utf-8'
+              },
+              body:JSON.stringify(body)
+          };
+          let addUserRequest = fetch('http://localhost:3000/user',{
+             ...option
+          })
+          addUserRequest.then(res=>res.json()).then(res=>{
+              console.log(res);
+              return res;
+              
+          })
+         
+      }
+      
+     adduser(profile);
+     console.log(adduser);
+        // $("#name").text(profile.getName());
+        // $("#email").text(profile.getEmail());
+        // $("#image").attr('src', profile.getImageUrl());
+        // $(".data").css("display", "block");
+        // $(".g-signin2").css("display", "none");
+      }
+      
+      // function details(){
+        
+      // }
+      // // function signOut() {
+      // //   var auth2 = gapi.auth2.getAuthInstance();
+      // //   auth2.signOut().then(function () {
+      // //     alert("you have been signed out succesfully");
+      // //     $(".g-signin2").css("display", "none");
+      // //     $(".data").css("display", "none");
+      // //   });
+      // }
+      </script>
+</body>
+</html>
