@@ -29,27 +29,27 @@
     </div>
  -->
 
- <div class="data">
-<table class="thead-dark"  style="align-items: center;">
+<table class="table">
   <thead>
     <tr>
-      <th scope="name">name</th>
-      <th scope="id">id</th>
-      <th scope="user details">user details</th>
+      <th scope="name">#</th>
+      <th scope="id">First</th>
+      <th scope=" Email">Last</th>
      
     </tr>
   </thead>
   <tbody>
     <tr>
       
-      <td >  <p id="name"></p> </td>
-      <td >  <p id="ID"></p>   </td>
-      <td >  <p id="userdetails"> </p>   </td>
+      <td id="name"></td>
+      <td id="ID"></td>
+      <td id="Email"></td>
     </tr>
    
   </tbody>
 </table>
-</div>
+
+
 
 
 
@@ -58,6 +58,7 @@
 
     <script>
 
+     
         let getPosts=()=>{
             let options ={
                 headers: {
@@ -79,9 +80,12 @@
                     console.log(res.user.tf)
                     document.getElementById("name").innerHTML = res.user.tf;
                    
-                    document.getElementById("userdetails").innerHTML = res.user;
+                    document.getElementById("Email").innerHTML = res.user.tv;
+
+
+                    
                 
-                
+
                 
             }).catch(err=>{
                 console.log(err);
@@ -89,7 +93,6 @@
             
         }
         getPosts();
-        
  
         
         
